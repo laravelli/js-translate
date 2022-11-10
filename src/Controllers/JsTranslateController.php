@@ -24,7 +24,7 @@ class JsTranslateController extends Controller
 
         $strings = Cache::remember(
             "lang_{$lang}.js",
-            now()->addSeconds(1),
+            now()->addHours(1),
             function () use ($lang, $files) {
                 $strings = [];
                 foreach ($files as $file) {
@@ -45,7 +45,7 @@ class JsTranslateController extends Controller
                         unset($name);
                     }
 
-                    if (! empty($strings)) {
+                    if (!empty($strings)) {
                         $strings['__possible_keys'] = array_keys($strings);
                     }
                 }
@@ -54,9 +54,9 @@ class JsTranslateController extends Controller
             });
 
         $encoded = json_encode($strings, JSON_THROW_ON_ERROR | JSON_UNESCAPED_LINE_TERMINATORS
-          | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_IGNORE);
+            | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_IGNORE);
 
-        $content = 'window.i18n = '.$encoded.';';
+        $content = 'window.i18n = ' . $encoded . ';';
 
         return response($content)->header('Content-Type', 'text/javascript');
     }
