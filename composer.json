@@ -1,0 +1,27 @@
+{
+    "name": "laravelli/js-translate",
+    "description": "Module for translating strings in vue.js",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Laravelli\\JsTranslate\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Alexander Manukian",
+            "email": "alikmanukian@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "orchestra/testbench": "~3.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Laravelli\\JsTranslate\\JsTranslateServiceProvider"
+            ]
+        }
+    }
+}
